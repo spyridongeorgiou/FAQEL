@@ -986,7 +986,7 @@ def edit_question():
 
 
     cancel_button = customtkinter.CTkButton(fg_color="orange",hover_color="red", master=edit_question_window,text="Schließen ", text_color="black", command=lambda:[edit_question_window.grab_release(),edit_question_window.destroy(),update_answer()]) #cancelbutton 
-    cancel_button.pack(side="bottom",pady=5, padx=5, fill="both")
+    cancel_button.pack(side="top",pady=5, padx=5, fill="both")
 
     value1_entry.insert(0, edit_question_query_result[1])
     value2_entry.insert(0, edit_question_query_result[2])
@@ -1001,7 +1001,7 @@ def edit_answer():
     current_tree2_focus = tree2.focus()
     edit_answer_window = customtkinter.CTkToplevel(app) #create toplevel window
 
-    edit_answer_window.geometry("900x650") # window size
+    edit_answer_window.geometry("900x500") # window size
     edit_answer_window.attributes("-topmost", True)# set topmost
     edit_answer_window.title("FAQEL - Frage bearbeiten") # window title 
 
@@ -1119,7 +1119,7 @@ def edit_answer():
     confirm_edit_button.pack(side="top", pady=5, padx=5, fill="both")
 
     cancel_button = customtkinter.CTkButton(fg_color="orange",hover_color="red", master=edit_answer_window,text="Schließen ", text_color="black", command=lambda:[edit_answer_window.grab_release(),edit_answer_window.destroy(),update_answer()]) #cancelbutton 
-    cancel_button.pack(side="bottom",pady=5, padx=5, fill="both")
+    cancel_button.pack(side="top",pady=5, padx=5, fill="both")
 
     value1_answer_entry.insert(0, edit_answer_query_result[1])
     value2_answer_entry.insert(0, edit_answer_query_result[2])
