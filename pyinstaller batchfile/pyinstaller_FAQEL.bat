@@ -1,0 +1,1 @@
+ pyinstaller --noconfirm --log-level=WARN --onedir --windowed --noconsole --add-data "c:\users\agent\appdata\local\programs\python\python39\lib\site-packages\customtkinter;customtkinter" --add-data "C:\FAQEL\main\dark-blue.json;theme" --add-data "C:\FAQEL\main\mysqlconfig.csv;." FAQEL.py
