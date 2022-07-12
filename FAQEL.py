@@ -478,32 +478,44 @@ search_util_container = customtkinter.CTkFrame(master=main_container,height=50,c
 search_util_container.pack(side="bottom",pady=5,padx=5,fill="both")
 
 
-ask_question_frame = customtkinter.CTkFrame(master=search_util_container,width=current_wh_list[0]*3, height=60, corner_radius=15) #frame which stores entry aswell as button(s)
+ask_question_frame = customtkinter.CTkFrame(master=search_util_container,width=current_wh_list[0]*2.3, height=60, corner_radius=15) #frame which stores entry aswell as button(s)
 ask_question_frame.pack(side="left",pady=5, padx=5, fill="both")
 
-ask_question_entry = customtkinter.CTkEntry(master=ask_question_frame,width=current_wh_list[0]*3, placeholder_text="Frage eingeben... ")
+ask_question_entry = customtkinter.CTkEntry(master=ask_question_frame,width=current_wh_list[0]*2.3, placeholder_text="Frage eingeben... ")
 ask_question_entry.pack(side="top",pady=10, padx=15, fill="both")
 
-ask_question_button = customtkinter.CTkButton(master=ask_question_frame,width=current_wh_list[0]*3,height=35, text="Frage stellen", command=lambda:[add_question('<Return>')])
+ask_question_button = customtkinter.CTkButton(master=ask_question_frame,width=current_wh_list[0]*2.3,height=35, text="Frage stellen", command=lambda:[add_question('<Return>')])
 ask_question_button.pack(side="bottom", pady=10, padx=10, fill="both")
 ask_question_entry.bind('<Return>',add_question)
 
-add_answer_frame = customtkinter.CTkFrame(master=search_util_container, width=current_wh_list[0]*3, height=60, corner_radius=15) #frame which stores entry aswell as button(s)
+add_answer_frame = customtkinter.CTkFrame(master=search_util_container, width=current_wh_list[0]*2.3, height=60, corner_radius=15) #frame which stores entry aswell as button(s)
 add_answer_frame.pack(side="right",pady=5, padx=5, fill="both")
 
-add_answer_entry = customtkinter.CTkEntry(master=add_answer_frame,width=current_wh_list[0]*3, placeholder_text="Antwort eingeben... ")
+add_answer_entry = customtkinter.CTkEntry(master=add_answer_frame,width=current_wh_list[0]*2.3, placeholder_text="Antwort eingeben... ")
 add_answer_entry.pack(side="top",pady=10, padx=15, fill="both")
 
-add_answer_button = customtkinter.CTkButton(master=add_answer_frame,fg_color="#21a366",width=current_wh_list[0]*3,height=35,text="Beantworten ", command=lambda:[add_answer('<Return>')])
+add_answer_button = customtkinter.CTkButton(master=add_answer_frame,fg_color="#21a366",width=current_wh_list[0]*2.3,height=35,text="Beantworten ", command=lambda:[add_answer('<Return>')])
 add_answer_button.pack(side="bottom",pady=10,padx=10,fill="both")
 add_answer_entry.bind('<Return>',add_answer)
 
 
 main_content_frame_container = customtkinter.CTkFrame(master=main_container,corner_radius=15) # main content frame container
-main_content_frame_container.pack(pady=5,padx=5,fill="both")
+main_content_frame_container.pack(side="right",pady=5,padx=5,fill="both")
 
-main_content_frame_left = customtkinter.CTkFrame(master=main_content_frame_container, height=current_wh_list[1]//2.5, width=current_wh_list[0]//3, corner_radius=15) #main content frame left
-main_content_frame_left.pack(side="left",pady=5, padx=5, fill="both")
+main_content_frame_container2 = customtkinter.CTkFrame(master=main_container,corner_radius=15) # main content frame container
+main_content_frame_container2.pack(side="left",pady=5,padx=5,fill="both")
+
+main_content_frame_left = customtkinter.CTkFrame(master=main_content_frame_container2, height=current_wh_list[1]//2.5, width=500, corner_radius=15) #main content frame left
+main_content_frame_left.pack(side="left",pady=5, padx=5,fill="both")
+
+main_content_frame_right_bottom = customtkinter.CTkFrame(master=main_content_frame_container,height=300, width=250, corner_radius=15)
+main_content_frame_right_bottom.pack(side="bottom",pady=5, padx=5,fill="both")
+
+main_content_frame_right_top = customtkinter.CTkFrame(master=main_content_frame_container, height=300, width=450, corner_radius=15)
+main_content_frame_right_top.pack(side="top",pady=5, padx=5,fill="both")
+
+
+
 
 tree_columns = ("frage_id","frage","frage_datum","beantwortet","antwort_id", "tags", "nutzer_id")
 
@@ -521,15 +533,15 @@ style.configure("Treeview",
 style.map("Treeview",
     background=[("selected","#111111")])
 
-tree = tk.ttk.Treeview(main_content_frame_left,style="mystyle.Treeview", height=current_wh_list[1]//3, columns=tree_columns, show='headings')
+tree = tk.ttk.Treeview(main_content_frame_left,style="mystyle.Treeview", height=400, columns=tree_columns, show='headings')
 #print(current_wh_list[1])
-tree.column("frage_id",minwidth=55)
-tree.column("frage",minwidth=500)
-tree.column("frage_datum",minwidth=70)
-tree.column("beantwortet",minwidth=85)
-tree.column("antwort_id",minwidth=75)
-tree.column("tags",minwidth=100)
-tree.column("nutzer_id",minwidth=75)
+tree.column("frage_id",minwidth=55,width=75)
+tree.column("frage",minwidth=150, width=int(current_wh_list[0]))
+tree.column("frage_datum",minwidth=65, width=75)
+tree.column("beantwortet",minwidth=55, width= 75)
+tree.column("antwort_id",minwidth=55, width=75)
+tree.column("tags",minwidth=35, width =70)
+tree.column("nutzer_id",minwidth=25, width= 85)
 
 tree.heading("frage_id", text="Frage ID")
 tree.heading("frage", text="Frage")
@@ -546,9 +558,6 @@ tree.pack(pady=5,padx=5,fill="both")
 ##    print(tree.identify())
 
 
-
-main_content_frame_right_bottom = customtkinter.CTkFrame(master=main_content_frame_container,height=275, width=500, corner_radius=15)
-main_content_frame_right_bottom.pack(side="bottom",pady=5, padx=5,fill="both")
 
 
 mcfrb_add_answer_frame = customtkinter.CTkFrame(master=main_content_frame_right_bottom,corner_radius=15)
@@ -590,17 +599,14 @@ mcfrb_answer_label["text"]="""Bitte wählen Sie eine Antwort aus (Doppelklick)!
 ##show_answers_button.pack(side="left",pady=5,padx=5,fill="both")
 
 
-main_content_frame_right_top = customtkinter.CTkFrame(master=main_content_frame_container, height=10, width=500, corner_radius=15)
-main_content_frame_right_top.pack(side="top",pady=5, padx=5,fill="x")
-
 tree2_columns = ("antwort_id","antwort_datum","antwort","frage_id","nutzer_id")
 tree2 = tk.ttk.Treeview(main_content_frame_right_top,style="mystyle.Treeview", height=200, columns=tree2_columns, show='headings')
 #print(current_wh_list[1])
-tree2.column("antwort_id",minwidth=55)
-tree2.column("antwort",minwidth=400)
-tree2.column("antwort_datum",minwidth=55)
-tree2.column("frage_id",minwidth=40)
-tree2.column("nutzer_id",minwidth=55)
+tree2.column("antwort_id",minwidth=55, width=70)
+tree2.column("antwort",minwidth=400, width=525)
+tree2.column("antwort_datum",minwidth=55, width=100)
+tree2.column("frage_id",minwidth=40, width=60)
+tree2.column("nutzer_id",minwidth=55, width=70)
 
 tree2.heading("antwort_id", text="Antwort ID")
 tree2.heading("antwort_datum", text="Antwort Datum ")
@@ -609,7 +615,7 @@ tree2.heading("frage_id", text="Frage ID")
 tree2.heading("nutzer_id", text="Nutzer ID", anchor=tk.W)
 
 ##tree.grid(row=0,column=0,sticky="nsew")
-tree2.pack(side="top",pady=5,padx=5,fill="x")
+tree2.pack(side="top",pady=5,padx=5,fill="both")
 
 ##def query_frage_table():
 ##    global frage_count
