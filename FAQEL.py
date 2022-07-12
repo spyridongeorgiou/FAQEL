@@ -20,7 +20,7 @@ import datetime # for getting current date to pass into DB
 import time
 ##import logging
 
-program_version = "1.1.1"
+program_version = "2.0.2"
 python_version = sys.version
 combined_version = f"Programm Version: {program_version} | Python Version: {python_version}" # combine both the program version aswell as the current python version running the program
 
